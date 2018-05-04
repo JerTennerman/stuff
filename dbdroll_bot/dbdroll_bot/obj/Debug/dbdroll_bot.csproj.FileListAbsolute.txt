@@ -1,0 +1,14 @@
+E:\In use\Рабочий стол\dbdroll_bot\dbdroll_bot\bin\Debug\dbdroll_bot.exe.config
+E:\In use\Рабочий стол\dbdroll_bot\dbdroll_bot\bin\Debug\dbdroll_bot.exe
+E:\In use\Рабочий стол\dbdroll_bot\dbdroll_bot\bin\Debug\dbdroll_bot.pdb
+E:\In use\Рабочий стол\dbdroll_bot\dbdroll_bot\bin\Debug\Newtonsoft.Json.dll
+E:\In use\Рабочий стол\dbdroll_bot\dbdroll_bot\bin\Debug\Telegram.Bot.dll
+E:\In use\Рабочий стол\dbdroll_bot\dbdroll_bot\bin\Debug\Newtonsoft.Json.xml
+E:\In use\Рабочий стол\dbdroll_bot\dbdroll_bot\bin\Debug\Telegram.Bot.xml
+E:\In use\Рабочий стол\dbdroll_bot\dbdroll_bot\obj\Debug\dbdroll_bot.csprojResolveAssemblyReference.cache
+E:\In use\Рабочий стол\dbdroll_bot\dbdroll_bot\obj\Debug\dbdroll_bot.Form1.resources
+E:\In use\Рабочий стол\dbdroll_bot\dbdroll_bot\obj\Debug\dbdroll_bot.Properties.Resources.resources
+E:\In use\Рабочий стол\dbdroll_bot\dbdroll_bot\obj\Debug\dbdroll_bot.csproj.GenerateResource.Cache
+E:\In use\Рабочий стол\dbdroll_bot\dbdroll_bot\obj\Debug\dbdroll_bot.csproj.CoreCompileInputs.cache
+E:\In use\Рабочий стол\dbdroll_bot\dbdroll_bot\obj\Debug\dbdroll_bot.exe
+E:\In use\Рабочий стол\dbdroll_bot\dbdroll_bot\obj\Debug\dbdroll_bot.pdb
