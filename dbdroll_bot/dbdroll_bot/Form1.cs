@@ -284,7 +284,7 @@ namespace dbdroll_bot
                         }
                         else if (message.Text == "/moneyinfo")
                         {
-
+                            bool sent = false;
                             foreach (var entry in money)
                             {
                                 if (entry.Key == message.From.FirstName)
@@ -292,7 +292,15 @@ namespace dbdroll_bot
                                     await Bot.SendTextMessageAsync(message.Chat.Id,
                                         message.From.FirstName + "  " + entry.Value + "\n",
                                         replyToMessageId: message.MessageId);
+                                    sent = true;
                                 }
+                            }
+
+                            if (!sent)
+                            {
+                                await Bot.SendTextMessageAsync(message.Chat.Id,
+                                    "You are not in system, please set your money first",
+                                    replyToMessageId: message.MessageId);
                             }
                         }
                         else if (message.Text == "/moneyinfo all")
@@ -364,6 +372,8 @@ namespace dbdroll_bot
                                 foreach (var entry in money)
                                     file.WriteLine("[{0} {1}]", entry.Key, entry.Value);
 
+                            toRoll = false;
+
 
                         }
                         else
@@ -396,21 +406,24 @@ namespace dbdroll_bot
                                         toRoll = false;
                                     }
 
-                                    if (message.Text[i] == '.')
+                                    if (toRoll)
                                     {
-                                        dec = 1;
-                                    }
-                                    else
-                                    {
-                                        if (dec == 0)
+                                        if (message.Text[i] == '.')
                                         {
-                                            newMoney = newMoney * 10 + add;
-
+                                            dec = 1;
                                         }
                                         else
                                         {
-                                            newMoney = newMoney + (add / (Math.Pow(10, dec)));
-                                            dec++;
+                                            if (dec == 0)
+                                            {
+                                                newMoney = newMoney * 10 + add;
+
+                                            }
+                                            else
+                                            {
+                                                newMoney = newMoney + (add / (Math.Pow(10, dec)));
+                                                dec++;
+                                            }
                                         }
                                     }
 
