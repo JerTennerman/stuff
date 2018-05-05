@@ -20,6 +20,7 @@ namespace dbdroll_bot
         Random roll = new Random();
         bool toRoll = false;
         Dictionary<string, string> money = new Dictionary<string, string>();
+        Dictionary<string, int> exp = new Dictionary<string, int>();
         private string inputKey = "";
         private string inputValue = "";
 
@@ -377,7 +378,7 @@ namespace dbdroll_bot
                                 await Bot.SendTextMessageAsync(message.Chat.Id, "Invalid entry");
                             }
 
-                            Save();
+                            Save("money.txt");
 
                             toRoll = false;
 
@@ -453,7 +454,7 @@ namespace dbdroll_bot
                                                                                 money[message.From.FirstName] + "\n",
                                     replyToMessageId: message.MessageId);
 
-                                Save();
+                                Save("money.txt");
 
                             }
                             else
@@ -489,7 +490,7 @@ namespace dbdroll_bot
                             }
 
                             double.TryParse(inputValue, out double value);
-                            if (inputKey != "set")
+                            if (inputKey != "set" && inputKey != "exp")
                             {
                                 if (inputKey == "all")
                                 {
@@ -511,7 +512,7 @@ namespace dbdroll_bot
                                             user.Key + "  " + user.Value + "\n");
                                     }
 
-                                    Save();
+                                    Save("money.txt");
 
                                 }
                                 else if (money.ContainsKey(inputKey))
@@ -522,7 +523,7 @@ namespace dbdroll_bot
                                                                                     money[inputKey] + "\n",
                                         replyToMessageId: message.MessageId);
 
-                                    Save();
+                                    Save("money.txt");
                                 }
                                 else
                                 {
@@ -534,10 +535,10 @@ namespace dbdroll_bot
                                     inputKey = "";
                                     inputValue = "";
 
-                                    Save();
+                                    Save("money.txt");
                                 }
                             }
-                            else
+                            else if (inputKey != "exp")
                             {
                                 var keyHelper = new List<string>();
                                 double sum = 0;
@@ -558,11 +559,86 @@ namespace dbdroll_bot
                                     await Bot.SendTextMessageAsync(message.Chat.Id,
                                         user.Key + "  " + user.Value + "\n");
                                 }
-                                await Bot.SendTextMessageAsync(message.Chat.Id, " Total money: "+sum);
+                                await Bot.SendTextMessageAsync(message.Chat.Id, " Total money: " + sum);
 
-                                Save();
+                                Save("money.txt");
+                            }
+                            else
+                            {
+                                var keyHelper = new List<string>();
+                                double sum = 0;
+                                foreach (var user in exp)
+                                {
+                                    keyHelper.Add(user.Key);
+                                }
+
+                                foreach (var tmp in keyHelper)
+                                {
+                                    sum += value;
+                                    exp[tmp] = Convert.ToInt32(value);
+                                }
+
+                                await Bot.SendTextMessageAsync(message.Chat.Id, " New exp list: ");
+                                foreach (var user in exp)
+                                {
+                                    await Bot.SendTextMessageAsync(message.Chat.Id,
+                                        user.Key + "  " + user.Value + "\n");
+                                }
+
+                                Save("exp.txt");
                             }
 
+                        }
+                        //exp
+                        else if (message.Text[0] == '/' && message.Text[1] == 'e' && message.Text[2] == 'x' && message.Text[3] == 'p' && message.Text.Length > 4)
+                        {
+                            if (!exp.ContainsKey(message.From.FirstName))
+                            {
+                                exp.Add(message.From.FirstName, 0);
+                            }
+
+                            var newExp = 0;
+                            toRoll = true;
+                            var start = 5;
+                            if (message.Text[5] == '-')
+                            {
+                                start = 6;
+                            }
+
+                            for (var i = start; i < message.Text.Length; i++)
+                            {
+
+                                double add = Char.GetNumericValue(message.Text[i]);
+                                if ((add < 0 || add > 10) && message.Text[i] != '-')
+                                {
+                                    i = message.Text.Length;
+                                    toRoll = false;
+                                }
+
+                                if (toRoll)
+                                {
+                                    newExp = newExp * 10 + Convert.ToInt32(add);
+                                }
+
+                            }
+
+                            if (toRoll)
+                            {
+                                if (start == 6)
+                                {
+                                    newExp *= -1;
+                                }
+                                newExp += exp[message.From.FirstName];
+                                await Bot.SendTextMessageAsync(message.Chat.Id, " Exp changed, new exp = " + newExp);
+                                exp[message.From.FirstName] = newExp;
+                                Save("exp.txt");
+                            }
+                            else
+                            {
+                                await Bot.SendTextMessageAsync(message.Chat.Id, "Invalid entry");
+                            }
+
+                            toRoll = false;
                         }
                     }
                 };
@@ -747,14 +823,24 @@ namespace dbdroll_bot
             return total;
         }
 
-        private void Save()
+        private void Save(string fileName)
         {
-            File.WriteAllText("money.txt", string.Empty);
-
-            using (StreamWriter file = new StreamWriter("money.txt"))
+            File.WriteAllText(fileName, string.Empty);
+            if (fileName == "money.txt")
             {
-                foreach (var entry in money)
-                    file.WriteLine("[{0} {1}]", entry.Key, entry.Value);
+                using (StreamWriter file = new StreamWriter(fileName))
+                {
+                    foreach (var entry in money)
+                        file.WriteLine("[{0} {1}]", entry.Key, entry.Value);
+                }
+            }
+            else if (fileName == "exp.txt")
+            {
+                using (StreamWriter file = new StreamWriter(fileName))
+                {
+                    foreach (var entry in exp)
+                        file.WriteLine("[{0} {1}]", entry.Key, entry.Value);
+                }
             }
         }
 
@@ -805,6 +891,38 @@ namespace dbdroll_bot
                 split = false;
 
                 dec = 0;
+            }
+
+            input = File.ReadAllLines("exp.txt");
+            for (var j = 0; j < input.Length; j++)
+            {
+                string stroka = input[j];
+                for (var i = 0; i < stroka.Length; i++)
+                {
+                    if (!split)
+                    {
+                        if (stroka[i] != ' ')
+                        {
+                            if (stroka[i] != '[' && stroka[i] != ']')
+                                key += stroka[i];
+                        }
+                        else
+                        {
+                            split = true;
+                        }
+                    }
+                    else
+                    {
+                        value.Add(stroka[i].ToString());
+                    }
+
+
+                }
+
+
+                exp.Add(key.ToString(), Convert.ToInt32(combiner(value, 0)));
+                value.Clear();
+                split = false;
             }
 
             var text = @txtKey.Text; // получаем содержимое текстового поля txtKey в переменную text
