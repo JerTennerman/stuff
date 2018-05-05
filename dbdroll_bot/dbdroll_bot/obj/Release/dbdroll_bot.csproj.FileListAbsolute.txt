@@ -12,3 +12,17 @@ E:\In use\Рабочий стол\dbdroll_bot\dbdroll_bot\obj\Release\dbdroll_bo
 E:\In use\Рабочий стол\dbdroll_bot\dbdroll_bot\obj\Release\dbdroll_bot.exe
 E:\In use\Рабочий стол\dbdroll_bot\dbdroll_bot\obj\Release\dbdroll_bot.pdb
 E:\In use\Рабочий стол\dbdroll_bot\dbdroll_bot\obj\Release\dbdroll_bot.csprojResolveAssemblyReference.cache
+E:\In use\Мои документы\stuff\dbdroll_bot\dbdroll_bot\bin\Release\dbdroll_bot.exe.config
+E:\In use\Мои документы\stuff\dbdroll_bot\dbdroll_bot\bin\Release\dbdroll_bot.exe
+E:\In use\Мои документы\stuff\dbdroll_bot\dbdroll_bot\bin\Release\dbdroll_bot.pdb
+E:\In use\Мои документы\stuff\dbdroll_bot\dbdroll_bot\bin\Release\Newtonsoft.Json.dll
+E:\In use\Мои документы\stuff\dbdroll_bot\dbdroll_bot\bin\Release\Telegram.Bot.dll
+E:\In use\Мои документы\stuff\dbdroll_bot\dbdroll_bot\bin\Release\Newtonsoft.Json.xml
+E:\In use\Мои документы\stuff\dbdroll_bot\dbdroll_bot\bin\Release\Telegram.Bot.xml
+E:\In use\Мои документы\stuff\dbdroll_bot\dbdroll_bot\obj\Release\dbdroll_bot.csprojResolveAssemblyReference.cache
+E:\In use\Мои документы\stuff\dbdroll_bot\dbdroll_bot\obj\Release\dbdroll_bot.Form1.resources
+E:\In use\Мои документы\stuff\dbdroll_bot\dbdroll_bot\obj\Release\dbdroll_bot.Properties.Resources.resources
+E:\In use\Мои документы\stuff\dbdroll_bot\dbdroll_bot\obj\Release\dbdroll_bot.csproj.GenerateResource.Cache
+E:\In use\Мои документы\stuff\dbdroll_bot\dbdroll_bot\obj\Release\dbdroll_bot.csproj.CoreCompileInputs.cache
+E:\In use\Мои документы\stuff\dbdroll_bot\dbdroll_bot\obj\Release\dbdroll_bot.exe
+E:\In use\Мои документы\stuff\dbdroll_bot\dbdroll_bot\obj\Release\dbdroll_bot.pdb
