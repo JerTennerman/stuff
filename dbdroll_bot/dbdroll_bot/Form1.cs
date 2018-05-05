@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Telegram.Bot;
+using Telegram.Bot.Types.InlineKeyboardButtons;
+using Telegram.Bot.Types.ReplyMarkups;
 
 namespace dbdroll_bot
 {
@@ -18,6 +20,8 @@ namespace dbdroll_bot
         Random roll = new Random();
         bool toRoll = false;
         Dictionary<string, string> money = new Dictionary<string, string>();
+        private string inputKey = "";
+        private string inputValue = "";
 
         public Form1()
         {
@@ -305,11 +309,15 @@ namespace dbdroll_bot
                         }
                         else if (message.Text == "/moneyinfo all")
                         {
+                            double sum = 0;
                             await Bot.SendTextMessageAsync(message.Chat.Id, "Total money:");
                             foreach (var entry in money)
                             {
+                                sum += double.Parse(entry.Value);
                                 await Bot.SendTextMessageAsync(message.Chat.Id, entry.Key + "  " + entry.Value + "\n");
                             }
+
+                            await Bot.SendTextMessageAsync(message.Chat.Id, "Sum =" + sum);
                         }
                         else
                         if (message.Text[0] == '/' && message.Text[1] == 's' && message.Text[2] == 'e' &&
@@ -322,13 +330,13 @@ namespace dbdroll_bot
                             }
 
                             toRoll = true; //for invalid entry
-                            var dec = 0;
+                            var dec = -1;
                             double newMoney = 0;
 
                             for (var i = 10; i < message.Text.Length; i++)
                             {
                                 double add = Char.GetNumericValue(message.Text[i]);
-                                if (add < 0 || add > 10 && message.Text[i] != '.')
+                                if ((add < 0 || add > 10) && message.Text[i] != '.')
                                 {
                                     i = message.Text.Length;
                                     toRoll = false;
@@ -338,17 +346,20 @@ namespace dbdroll_bot
                                 {
                                     if (message.Text[i] == '.')
                                     {
-                                        dec = 1;
+                                        dec = 0;
                                     }
 
-                                    if (dec == 0)
+                                    if (dec < 0)
                                     {
                                         newMoney = newMoney * 10 + add;
+                                    }
+                                    else if (dec == 0)
+                                    {
+                                        dec++;
                                     }
                                     else
                                     {
                                         newMoney = newMoney + (add / (Math.Pow(10, dec)));
-                                        dec++;
                                     }
                                 }
 
@@ -366,104 +377,192 @@ namespace dbdroll_bot
                                 await Bot.SendTextMessageAsync(message.Chat.Id, "Invalid entry");
                             }
 
-                            File.WriteAllText("money.txt", string.Empty);
-
-                            using (StreamWriter file = new StreamWriter("money.txt"))
-                                foreach (var entry in money)
-                                    file.WriteLine("[{0} {1}]", entry.Key, entry.Value);
+                            Save();
 
                             toRoll = false;
 
 
                         }
                         else
+                        if (message.Text[0] == '/' && message.Text[1] == 'a' && message.Text[2] == 'd' &&
+                            message.Text[3] == 'd' && message.Text[4] == 'm' && message.Text[5] == 'o' &&
+                            message.Text[6] == 'n' && message.Text[7] == 'e' && message.Text[8] == 'y' &&
+                            message.Text.Length > 9)
                         {
-                            if (message.Text[0] == '/' && message.Text[1] == 'a' && message.Text[2] == 'd' &&
-                                message.Text[3] == 'd' && message.Text[4] == 'm' && message.Text[5] == 'o' &&
-                                message.Text[6] == 'n' && message.Text[7] == 'e' && message.Text[8] == 'y' &&
-                                message.Text.Length > 9)
+                            if (!money.ContainsKey(message.From.FirstName))
                             {
-                                if (!money.ContainsKey(message.From.FirstName))
+                                money.Add(message.From.FirstName, "0");
+                            }
+
+                            toRoll = true; //for invalid entry
+                            var dec = 0;
+                            double newMoney = 0;
+                            var start = 10;
+                            if (message.Text[start] == '-')
+                            {
+                                start++;
+                            }
+
+                            for (var i = start; i < message.Text.Length; i++)
+                            {
+                                double add = Char.GetNumericValue(message.Text[i]);
+                                if ((add < 0 || add > 10) && message.Text[i] != '.')
                                 {
-                                    money.Add(message.From.FirstName, "0");
-                                }
-
-                                toRoll = true; //for invalid entry
-                                var dec = 0;
-                                double newMoney = 0;
-                                var start = 10;
-                                if (message.Text[start] == '-')
-                                {
-                                    start++;
-                                }
-
-                                for (var i = start; i < message.Text.Length; i++)
-                                {
-                                    double add = Char.GetNumericValue(message.Text[i]);
-                                    if ((add < 0 || add > 10) && message.Text[i] != '.')
-                                    {
-                                        i = message.Text.Length;
-                                        toRoll = false;
-                                    }
-
-                                    if (toRoll)
-                                    {
-                                        if (message.Text[i] == '.')
-                                        {
-                                            dec = 1;
-                                        }
-                                        else
-                                        {
-                                            if (dec == 0)
-                                            {
-                                                newMoney = newMoney * 10 + add;
-
-                                            }
-                                            else
-                                            {
-                                                newMoney = newMoney + (add / (Math.Pow(10, dec)));
-                                                dec++;
-                                            }
-                                        }
-                                    }
-
-
+                                    i = message.Text.Length;
+                                    toRoll = false;
                                 }
 
                                 if (toRoll)
                                 {
-                                    if (start == 10)
+                                    if (message.Text[i] == '.')
                                     {
-                                        double.TryParse(money[message.From.FirstName], out double oldMoney);
-                                        money[message.From.FirstName] = (oldMoney + newMoney).ToString();
+                                        dec = 1;
                                     }
                                     else
                                     {
-                                        double.TryParse(money[message.From.FirstName], out double oldMoney);
-                                        // if (oldMoney - newMoney >= 0)
-                                        money[message.From.FirstName] = (oldMoney - newMoney).ToString();
-                                        //else
-                                        // {
-                                        //     money[message.From.FirstName] = 0.ToString();
-                                        // }
+                                        if (dec == 0)
+                                        {
+                                            newMoney = newMoney * 10 + add;
+
+                                        }
+                                        else
+                                        {
+                                            newMoney = newMoney + (add / (Math.Pow(10, dec)));
+                                            dec++;
+                                        }
                                     }
+                                }
 
-                                    await Bot.SendTextMessageAsync(message.Chat.Id, "your money now = " +
-                                                                                    money[message.From.FirstName] + "\n",
-                                        replyToMessageId: message.MessageId);
 
-                                    File.WriteAllText("money.txt", string.Empty);
+                            }
 
-                                    using (StreamWriter file = new StreamWriter("money.txt"))
-                                        foreach (var entry in money)
-                                            file.WriteLine("[{0} {1}]", entry.Key, entry.Value);
+                            if (toRoll)
+                            {
+                                if (start == 10)
+                                {
+                                    double.TryParse(money[message.From.FirstName], out double oldMoney);
+                                    money[message.From.FirstName] = (oldMoney + newMoney).ToString();
                                 }
                                 else
                                 {
-                                    await Bot.SendTextMessageAsync(message.Chat.Id, "Invalid entry");
+                                    double.TryParse(money[message.From.FirstName], out double oldMoney);
+                                    money[message.From.FirstName] = (oldMoney - newMoney).ToString();
                                 }
 
+                                await Bot.SendTextMessageAsync(message.Chat.Id, "your money now = " +
+                                                                                money[message.From.FirstName] + "\n",
+                                    replyToMessageId: message.MessageId);
+
+                                Save();
+
                             }
+                            else
+                            {
+                                await Bot.SendTextMessageAsync(message.Chat.Id, "Invalid entry");
+                            }
+
+                        }
+                        else if (message.Text[0] == '/' && message.Text[1] == 'd' && message.Text[2] == 'm' && message.Text.Length > 3)
+                        {
+                            inputKey = "";
+                            inputValue = "";
+                            bool split = false;
+                            bool set = false;
+
+                            for (var i = 4; i < message.Text.Length; i++)
+                            {
+                                if (message.Text[i] == ' ')
+                                {
+                                    split = true;
+                                }
+                                else
+                                {
+                                    if (split)
+                                    {
+                                        inputValue += message.Text[i];
+                                    }
+                                    else
+                                    {
+                                        inputKey += message.Text[i];
+                                    }
+                                }
+                            }
+
+                            double.TryParse(inputValue, out double value);
+                            if (inputKey != "set")
+                            {
+                                if (inputKey == "all")
+                                {
+                                    var keyHelper = new List<string>();
+                                    foreach (var user in money)
+                                    {
+                                        keyHelper.Add(user.Key);
+                                    }
+
+                                    foreach (var tmp in keyHelper)
+                                    {
+                                        money[tmp] = (double.Parse(money[tmp]) + value).ToString();
+                                    }
+
+                                    await Bot.SendTextMessageAsync(message.Chat.Id, " New money list: ");
+                                    foreach (var user in money)
+                                    {
+                                        await Bot.SendTextMessageAsync(message.Chat.Id,
+                                            user.Key + "  " + user.Value + "\n");
+                                    }
+
+                                    Save();
+
+                                }
+                                else if (money.ContainsKey(inputKey))
+                                {
+                                    money[inputKey] = (double.Parse(money[inputKey]) + value).ToString();
+
+                                    await Bot.SendTextMessageAsync(message.Chat.Id, inputKey + "'s money now = " +
+                                                                                    money[inputKey] + "\n",
+                                        replyToMessageId: message.MessageId);
+
+                                    Save();
+                                }
+                                else
+                                {
+                                    await Bot.SendTextMessageAsync(message.Chat.Id,
+                                        "There is no player with such name, so he was created");
+                                    money.Add(inputKey, inputValue);
+                                    await Bot.SendTextMessageAsync(message.Chat.Id,
+                                        "User " + inputKey + " added.\n His money=" + inputValue);
+                                    inputKey = "";
+                                    inputValue = "";
+
+                                    Save();
+                                }
+                            }
+                            else
+                            {
+                                var keyHelper = new List<string>();
+                                double sum = 0;
+                                foreach (var user in money)
+                                {
+                                    keyHelper.Add(user.Key);
+                                }
+
+                                foreach (var tmp in keyHelper)
+                                {
+                                    sum += value;
+                                    money[tmp] = value.ToString();
+                                }
+
+                                await Bot.SendTextMessageAsync(message.Chat.Id, " New money list: ");
+                                foreach (var user in money)
+                                {
+                                    await Bot.SendTextMessageAsync(message.Chat.Id,
+                                        user.Key + "  " + user.Value + "\n");
+                                }
+                                await Bot.SendTextMessageAsync(message.Chat.Id, " Total money: "+sum);
+
+                                Save();
+                            }
+
                         }
                     }
                 };
@@ -630,9 +729,9 @@ namespace dbdroll_bot
             dice.mod = 0;
         }
 
-        private int combiner(List<string> num)
+        private double combiner(List<string> num, int dec)
         {
-            var total = 0;
+            double total = 0;
             int add;
             foreach (var entry in num)
             {
@@ -642,7 +741,21 @@ namespace dbdroll_bot
                 }
             }
 
+            if (dec > 0)
+                total /= (Math.Pow(10, dec));
+
             return total;
+        }
+
+        private void Save()
+        {
+            File.WriteAllText("money.txt", string.Empty);
+
+            using (StreamWriter file = new StreamWriter("money.txt"))
+            {
+                foreach (var entry in money)
+                    file.WriteLine("[{0} {1}]", entry.Key, entry.Value);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -650,6 +763,7 @@ namespace dbdroll_bot
             money.Clear();
             var input = File.ReadAllLines("money.txt");
             bool split = false;
+            int dec = 0;
             string key = "";
             List<string> value = new List<string>();
             for (var j = 0; j < input.Length; j++)
@@ -657,13 +771,11 @@ namespace dbdroll_bot
                 string stroka = input[j];
                 for (var i = 0; i < stroka.Length; i++)
                 {
-                    if (split && !(int.TryParse(stroka[i].ToString(), out int o)))
-                    {
-                        money.Add(key.ToString(), combiner(value).ToString());
-                        key = "";
-                        value.Clear();
-                        split = false;
-                    }
+                    if (dec > 0)
+                        dec++;
+
+                    if (stroka[i] == ',')
+                        dec++;
 
                     if (!split)
                     {
@@ -681,7 +793,18 @@ namespace dbdroll_bot
                     {
                         value.Add(stroka[i].ToString());
                     }
+
+
                 }
+
+                dec -= 2;
+
+                money.Add(key.ToString(), combiner(value, dec).ToString());
+                key = "";
+                value.Clear();
+                split = false;
+
+                dec = 0;
             }
 
             var text = @txtKey.Text; // получаем содержимое текстового поля txtKey в переменную text
