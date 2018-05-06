@@ -67,6 +67,16 @@ namespace dbdroll_bot
                             userKey = message.From.FirstName;
                         }
 
+                        if (message.Text[0] == '/')
+                        {
+                            try
+                            {
+                                File.AppendAllText("log.txt", string.Format("{0} {1} {2} {3}", userKey, message.Text, DateTime.Now, Environment.NewLine));
+                            }
+                            catch (Exception)
+                            { }
+                        }
+
                         if (message.Text.Length > 2 && message.Text[0] == '/' && message.Text[1] == 'r' && message.Text[2] == ' ')
                         {
                             for (var i = 3; i < message.Text.Length; i++)
@@ -863,6 +873,7 @@ namespace dbdroll_bot
                 }
             }
         }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
