@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using Telegram.Bot;
 using Telegram.Bot.Types.InlineKeyboardButtons;
 using Telegram.Bot.Types.ReplyMarkups;
+using Message = Telegram.Bot.Types.Message;
 
 namespace dbdroll_bot
 {
@@ -23,6 +24,7 @@ namespace dbdroll_bot
         Dictionary<string, int> exp = new Dictionary<string, int>();
         private string inputKey = "";
         private string inputValue = "";
+        private string userKey = "";
 
         public Form1()
         {
@@ -41,6 +43,7 @@ namespace dbdroll_bot
 
                 Bot.OnUpdate += async (object su, Telegram.Bot.Args.UpdateEventArgs evu) =>
                 {
+
                     var dice = new Dice();
 
                     bool stopRoll = false;
@@ -55,6 +58,15 @@ namespace dbdroll_bot
                     if (message == null) return;
                     if (message.Type == Telegram.Bot.Types.Enums.MessageType.TextMessage)
                     {
+                        if (message.From.LastName != null)
+                        {
+                            userKey = message.From.LastName;
+                        }
+                        else
+                        {
+                            userKey = message.From.FirstName;
+                        }
+
                         if (message.Text.Length > 2 && message.Text[0] == '/' && message.Text[1] == 'r' && message.Text[2] == ' ')
                         {
                             for (var i = 3; i < message.Text.Length; i++)
@@ -292,10 +304,10 @@ namespace dbdroll_bot
                             bool sent = false;
                             foreach (var entry in money)
                             {
-                                if (entry.Key == message.From.FirstName)
+                                if (entry.Key == userKey)
                                 {
                                     await Bot.SendTextMessageAsync(message.Chat.Id,
-                                        message.From.FirstName + "  " + entry.Value + "\n",
+                                        userKey + "  " + entry.Value + "\n",
                                         replyToMessageId: message.MessageId);
                                     sent = true;
                                 }
@@ -306,6 +318,14 @@ namespace dbdroll_bot
                                 await Bot.SendTextMessageAsync(message.Chat.Id,
                                     "You are not in system, please set your money first",
                                     replyToMessageId: message.MessageId);
+                            }
+                        }
+                        else if (message.Text == "/exp all")
+                        {
+                            await Bot.SendTextMessageAsync(message.Chat.Id, "Total exp list is:\n");
+                            foreach (var entry in exp)
+                            {
+                                await Bot.SendTextMessageAsync(message.Chat.Id, entry.Key + "  " + entry.Value);
                             }
                         }
                         else if (message.Text == "/moneyinfo all")
@@ -325,9 +345,9 @@ namespace dbdroll_bot
                             message.Text[3] == 't' && message.Text[4] == 'm' && message.Text[5] == 'o' &&
                             message.Text[6] == 'n' && message.Text[7] == 'e' && message.Text[8] == 'y' && message.Text.Length > 9)
                         {
-                            if (!money.ContainsKey(message.From.FirstName))
+                            if (!money.ContainsKey(userKey))
                             {
-                                money.Add(message.From.FirstName, "0");
+                                money.Add(userKey, "0");
                             }
 
                             toRoll = true; //for invalid entry
@@ -368,9 +388,9 @@ namespace dbdroll_bot
 
                             if (toRoll)
                             {
-                                money[message.From.FirstName] = newMoney.ToString();
+                                money[userKey] = newMoney.ToString();
                                 await Bot.SendTextMessageAsync(message.Chat.Id, "your money now =" +
-                                    money[message.From.FirstName] + "\n",
+                                    money[userKey] + "\n",
                                     replyToMessageId: message.MessageId);
                             }
                             else
@@ -390,9 +410,9 @@ namespace dbdroll_bot
                             message.Text[6] == 'n' && message.Text[7] == 'e' && message.Text[8] == 'y' &&
                             message.Text.Length > 9)
                         {
-                            if (!money.ContainsKey(message.From.FirstName))
+                            if (!money.ContainsKey(userKey))
                             {
-                                money.Add(message.From.FirstName, "0");
+                                money.Add(userKey, "0");
                             }
 
                             toRoll = true; //for invalid entry
@@ -441,17 +461,17 @@ namespace dbdroll_bot
                             {
                                 if (start == 10)
                                 {
-                                    double.TryParse(money[message.From.FirstName], out double oldMoney);
-                                    money[message.From.FirstName] = (oldMoney + newMoney).ToString();
+                                    double.TryParse(money[userKey], out double oldMoney);
+                                    money[userKey] = (oldMoney + newMoney).ToString();
                                 }
                                 else
                                 {
-                                    double.TryParse(money[message.From.FirstName], out double oldMoney);
-                                    money[message.From.FirstName] = (oldMoney - newMoney).ToString();
+                                    double.TryParse(money[userKey], out double oldMoney);
+                                    money[userKey] = (oldMoney - newMoney).ToString();
                                 }
 
                                 await Bot.SendTextMessageAsync(message.Chat.Id, "your money now = " +
-                                                                                money[message.From.FirstName] + "\n",
+                                                                                money[userKey] + "\n",
                                     replyToMessageId: message.MessageId);
 
                                 Save("money.txt");
@@ -592,9 +612,9 @@ namespace dbdroll_bot
                         //exp
                         else if (message.Text[0] == '/' && message.Text[1] == 'e' && message.Text[2] == 'x' && message.Text[3] == 'p' && message.Text.Length > 4)
                         {
-                            if (!exp.ContainsKey(message.From.FirstName))
+                            if (!exp.ContainsKey(userKey))
                             {
-                                exp.Add(message.From.FirstName, 0);
+                                exp.Add(userKey, 0);
                             }
 
                             var newExp = 0;
@@ -628,9 +648,9 @@ namespace dbdroll_bot
                                 {
                                     newExp *= -1;
                                 }
-                                newExp += exp[message.From.FirstName];
+                                newExp += exp[userKey];
                                 await Bot.SendTextMessageAsync(message.Chat.Id, " Exp changed, new exp = " + newExp);
-                                exp[message.From.FirstName] = newExp;
+                                exp[userKey] = newExp;
                                 Save("exp.txt");
                             }
                             else
@@ -921,6 +941,7 @@ namespace dbdroll_bot
 
 
                 exp.Add(key.ToString(), Convert.ToInt32(combiner(value, 0)));
+                key = "";
                 value.Clear();
                 split = false;
             }
