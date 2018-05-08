@@ -48,6 +48,7 @@ namespace dbdroll_bot
 
                     bool stopRoll = false;
 
+
                     dice.pointer = "times";
                     dice.previousOperation = "";
                     string rolllList = "";
@@ -75,6 +76,18 @@ namespace dbdroll_bot
                             }
                             catch (Exception)
                             { }
+                        }
+
+                        if (message.Text.Contains("@dbdroll_bot"))
+                        {
+                            var start = 0;
+                            for (var i = 0; i < message.Text.Length && start == 0; i++)
+                            {
+                                if (message.Text[i] == '@')
+                                    start = i;
+                            }
+
+                            message.Text = message.Text.Remove(start, 12);
                         }
 
                         if (message.Text.Length > 2 && message.Text[0] == '/' && message.Text[1] == 'r' && message.Text[2] == ' ')
