@@ -9,3 +9,32 @@ Kobernick /moneyinfo@dbdroll_bot 06.05.2018 21:42:50
 Kobernick /moneyinfo@dbdroll_bot 06.05.2018 21:42:50 
 Kobernick /moneyinfo 06.05.2018 21:43:06 
 Дима /moneyinfo all 06.05.2018 22:36:55 
+Дима /exp 0.5 07.05.2018 0:28:48 
+Дима /moneyinfo all 07.05.2018 11:42:36 
+Дима /r 5d9 07.05.2018 20:33:09 
+Дима /r@dbdroll_bot d4 08.05.2018 15:09:32 
+Pond /r d4 08.05.2018 15:09:40 
+Дима /r@dbdroll_bot d4 08.05.2018 15:10:15 
+Дима /r@dbdroll_bot d4 08.05.2018 15:10:31 
+Дима /r@dbdroll_bot d4 08.05.2018 15:12:47 
+Дима /r@dbdroll_bot d4 08.05.2018 15:12:55 
+Дима /r@dbdroll_bot d4 08.05.2018 15:16:50 
+Дима /r@dbdroll_bot d4 08.05.2018 15:16:58 
+Дима /r@dbdroll_bot d4 08.05.2018 15:30:42 
+Дима /statroll 08.05.2018 21:56:39 
+Дима /r d20 09.05.2018 15:22:44 
+Дима /moneyinfo all 11.05.2018 9:14:25 
+Pond /statroll@dbdroll_bot 11.05.2018 21:17:31 
+Дима /statroll@dbdroll_bot 11.05.2018 21:21:59 
+Дима /statroll@dbdroll_bot 11.05.2018 21:45:09 
+Дима /statroll@dbdroll_bot 11.05.2018 21:45:09 
+Kobernick /statroll 11.05.2018 21:45:09 
+Дима /moneyinfo all 12.05.2018 0:55:49 
+Дима /r 12.05.2018 11:06:53 
+Дима /r d20 12.05.2018 11:06:58 
+Дима /exp 0 12.05.2018 11:07:11 
+Дима /statroll 12.05.2018 12:58:47 
+Дима /statroll 12.05.2018 12:58:55 
+Дима /statroll 12.05.2018 12:59:02 
+Дима /statroll 12.05.2018 12:59:06 
+Дима /statroll 12.05.2018 12:59:08 
