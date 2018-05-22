@@ -90,7 +90,40 @@ namespace dbdroll_bot
                             message.Text = message.Text.Remove(start, 12);
                         }
 
-                        if (message.Text.Length > 2 && message.Text[0] == '/' && message.Text[1] == 'r' && message.Text[2] == ' ')
+                        if (message.Text.Contains("/rollname"))
+                        {
+                            message.Text = message.Text.Remove(0, 10);
+                            string[] syl = new string[]{};
+                            syl = File.ReadAllLines("syl.txt");
+                            Int32.TryParse(message.Text, out int count);
+                            Random roll = new Random();
+                            var output = "";
+                            for (var i = 0; i < count; i++)
+                            {
+                                var thisRoll = roll.Next(0, syl.Length);
+                                output += syl[thisRoll];
+                            }
+                            await Bot.SendTextMessageAsync(message.Chat.Id,
+                                 output,
+                                replyToMessageId: message.MessageId);
+                        }
+                        else if (message.Text.Contains("/rollword"))
+                        {
+                            message.Text = message.Text.Remove(0, 10);
+                            char[] alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToLower().ToCharArray();
+                            Int32.TryParse(message.Text, out int count);
+                            Random roll = new Random();
+                            var output = "";
+                            for (var i = 0; i < count; i++)
+                            {
+                                var thisRoll = roll.Next(0, alpha.Length);
+                                output += alpha[thisRoll];
+                            }
+                            await Bot.SendTextMessageAsync(message.Chat.Id,
+                                output,
+                                replyToMessageId: message.MessageId);
+                        }
+                        else if (message.Text.Length > 2 && message.Text[0] == '/' && message.Text[1] == 'r' && message.Text[2] == ' ')
                         {
                             for (var i = 3; i < message.Text.Length; i++)
                             {

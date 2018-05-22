@@ -116,3 +116,6 @@ Kobernick /r d20+6 18.05.2018 0:00:22
 Лысоконь /exp@dbdroll_bot 5500 20.05.2018 21:04:01 
 Лысоконь /addmoney@dbdroll_bot 375 20.05.2018 21:04:13 
 Kobernick /r 7d31 21.05.2018 22:39:33 
+Pond /rollword 4 22.05.2018 10:49:03 
+Pond /rollword 6 22.05.2018 10:49:17 
+Дима /rollname 12 22.05.2018 10:50:03 
