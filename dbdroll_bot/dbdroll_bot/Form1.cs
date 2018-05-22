@@ -92,10 +92,18 @@ namespace dbdroll_bot
 
                         if (message.Text.Contains("/rollname"))
                         {
-                            message.Text = message.Text.Remove(0, 10);
+                            int count;
+                            if (message.Text.Length > 10)
+                            {
+                                message.Text = message.Text.Remove(0, 10);
+                                Int32.TryParse(message.Text, out count);
+                            }
+                            else
+                            {
+                                count = 3;
+                            }
                             string[] syl = new string[]{};
                             syl = File.ReadAllLines("syl.txt");
-                            Int32.TryParse(message.Text, out int count);
                             Random roll = new Random();
                             var output = "";
                             for (var i = 0; i < count; i++)
@@ -109,9 +117,17 @@ namespace dbdroll_bot
                         }
                         else if (message.Text.Contains("/rollword"))
                         {
-                            message.Text = message.Text.Remove(0, 10);
+                            int count;
+                            if (message.Text.Length > 10)
+                            {
+                                message.Text = message.Text.Remove(0, 10);
+                                Int32.TryParse(message.Text, out count);
+                            }
+                            else
+                            {
+                                count = 7;
+                            }
                             char[] alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToLower().ToCharArray();
-                            Int32.TryParse(message.Text, out int count);
                             Random roll = new Random();
                             var output = "";
                             for (var i = 0; i < count; i++)

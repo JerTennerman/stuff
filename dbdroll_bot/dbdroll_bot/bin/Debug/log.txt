@@ -24,3 +24,12 @@ Pond /roll name 3 22.05.2018 10:46:13
 Дима /rollword 12 22.05.2018 10:46:39 
 Дима /rollword 7 22.05.2018 10:47:04 
 Дима /rollword 7 22.05.2018 10:47:13 
+Давыдовский /rollname@dbdroll_bot 22.05.2018 11:02:06 
+Давыдовский /rollname@dbdroll_bot 22.05.2018 11:02:26 
+Давыдовский /rollname@dbdroll_bot 22.05.2018 11:05:50 
+Давыдовский /rollname@dbdroll_bot 22.05.2018 11:05:50 
+Давыдовский /rollname 4 22.05.2018 11:05:50 
+Дима /rollname 3 22.05.2018 11:05:50 
+Давыдовский /rollname@dbdroll_bot 3 22.05.2018 11:05:50 
+Дима /rollname@dbdroll_bot 22.05.2018 11:06:34 
+Давыдовский /rollname@dbdroll_bot 22.05.2018 11:06:53 
