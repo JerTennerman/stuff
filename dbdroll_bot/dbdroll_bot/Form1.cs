@@ -1,18 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Telegram.Bot;
-using Telegram.Bot.Types.InlineKeyboardButtons;
-using Telegram.Bot.Types.ReplyMarkups;
-using Message = Telegram.Bot.Types.Message;
-
 namespace dbdroll_bot
 {
     public partial class Form1 : Form
@@ -57,7 +47,7 @@ namespace dbdroll_bot
                     var message = update.Message;
 
                     if (message == null) return;
-                    if (message.Type == Telegram.Bot.Types.Enums.MessageType.TextMessage)
+                    if (message.Type == Telegram.Bot.Types.Enums.MessageType.Text)
                     {
                         if (message.From.LastName != null)
                         {

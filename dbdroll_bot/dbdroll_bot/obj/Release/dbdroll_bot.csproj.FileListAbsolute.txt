@@ -26,3 +26,16 @@ E:\In use\Мои документы\stuff\dbdroll_bot\dbdroll_bot\obj\Release\db
 E:\In use\Мои документы\stuff\dbdroll_bot\dbdroll_bot\obj\Release\dbdroll_bot.csproj.CoreCompileInputs.cache
 E:\In use\Мои документы\stuff\dbdroll_bot\dbdroll_bot\obj\Release\dbdroll_bot.exe
 E:\In use\Мои документы\stuff\dbdroll_bot\dbdroll_bot\obj\Release\dbdroll_bot.pdb
+C:\Users\Jer\Documents\stuff\dbdroll_bot\dbdroll_bot\obj\Release\dbdroll_bot.csprojResolveAssemblyReference.cache
+C:\Users\Jer\Documents\stuff\dbdroll_bot\dbdroll_bot\obj\Release\dbdroll_bot.Form1.resources
+C:\Users\Jer\Documents\stuff\dbdroll_bot\dbdroll_bot\obj\Release\dbdroll_bot.Properties.Resources.resources
+C:\Users\Jer\Documents\stuff\dbdroll_bot\dbdroll_bot\obj\Release\dbdroll_bot.csproj.GenerateResource.Cache
+C:\Users\Jer\Documents\stuff\dbdroll_bot\dbdroll_bot\obj\Release\dbdroll_bot.exe
+C:\Users\Jer\Documents\stuff\dbdroll_bot\dbdroll_bot\bin\Release\dbdroll_bot.exe.config
+C:\Users\Jer\Documents\stuff\dbdroll_bot\dbdroll_bot\bin\Release\dbdroll_bot.exe
+C:\Users\Jer\Documents\stuff\dbdroll_bot\dbdroll_bot\bin\Release\dbdroll_bot.pdb
+C:\Users\Jer\Documents\stuff\dbdroll_bot\dbdroll_bot\bin\Release\Newtonsoft.Json.dll
+C:\Users\Jer\Documents\stuff\dbdroll_bot\dbdroll_bot\bin\Release\Telegram.Bot.dll
+C:\Users\Jer\Documents\stuff\dbdroll_bot\dbdroll_bot\bin\Release\Newtonsoft.Json.xml
+C:\Users\Jer\Documents\stuff\dbdroll_bot\dbdroll_bot\bin\Release\Telegram.Bot.xml
+C:\Users\Jer\Documents\stuff\dbdroll_bot\dbdroll_bot\obj\Release\dbdroll_bot.pdb

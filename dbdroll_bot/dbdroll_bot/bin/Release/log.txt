@@ -119,3 +119,92 @@ Kobernick /r 7d31 21.05.2018 22:39:33
 Pond /rollword 4 22.05.2018 10:49:03 
 Pond /rollword 6 22.05.2018 10:49:17 
 Дима /rollname 12 22.05.2018 10:50:03 
+Дима /rollname 3 22.05.2018 10:54:43 
+Pond /rollword 3 22.05.2018 10:55:34 
+Дима /rollname 3 22.05.2018 10:57:04 
+Pond /rollname 3 22.05.2018 10:57:26 
+Давыдовский /rollname 22.05.2018 10:58:54 
+Давыдовский /rollname@dbdroll_bot 22.05.2018 11:00:34 
+Дима /rollname 22.05.2018 11:09:58 
+Дима /rollname 22.05.2018 11:24:20 
+Дима /rollword 12 22.05.2018 11:24:28 
+Дима /rollname 2 22.05.2018 13:58:28 
+Дима /rollname 3 22.05.2018 21:14:07 
+Дима /rollname 4 22.05.2018 21:14:13 
+Дима /rollname 2 22.05.2018 21:14:19 
+Дима /r d20 23.05.2018 16:22:46 
+Дима /rollname 24.05.2018 1:20:10 
+Дима /moneyinfo all 24.05.2018 22:06:33 
+Дима /rollname 4 26.05.2018 1:51:07 
+Дима /rollname 3 26.05.2018 1:51:20 
+Дима /moneyinfo all 28.05.2018 23:31:49 
+Дима /rollname 1 30.05.2018 18:02:53 
+Дима /moneyinfo 01.06.2018 23:07:22 
+Kobernick /rollstats 12.06.2018 22:16:45 
+Kobernick /statroll@dbdroll_bot 12.06.2018 22:16:45 
+Kobernick /statroll 12.06.2018 22:16:45 
+Дима /addmoney@dbdroll_bot  -5.2 16.06.2018 12:30:14 
+Дима /addmoney -5.2 16.06.2018 12:30:36 
+Дима /moneyinfo@dbdroll_bot all 16.06.2018 19:51:51 
+Дима /exp all 17.06.2018 2:09:51 
+Дима /moneyinfo all 17.06.2018 13:09:10 
+Дима /exp all 17.06.2018 13:11:58 
+Дима /rollname@dbdroll_bot 17.06.2018 18:52:51 
+Pond /rollname@dbdroll_bot 17.06.2018 18:53:22 
+Pond /rollname@dbdroll_bot 17.06.2018 18:53:32 
+Pond /rollname@dbdroll_bot 17.06.2018 18:54:09 
+Pond /rollname@dbdroll_bot 17.06.2018 18:54:22 
+Дима /r d20 17.06.2018 23:43:55 
+Дима /moneyinfo 17.06.2018 23:46:24 
+Дима /moneyinfo 19.06.2018 0:18:25 
+Дима /r d20+11 19.06.2018 1:06:50 
+Дима /moneyinfo all 03.07.2018 22:19:50 
+Дима /dm Bank 1 03.07.2018 22:56:44 
+Дима /dm Bank -1 03.07.2018 22:56:52 
+Kobernick /statroll@dbdroll_bot 22.07.2018 22:52:58 
+Pond /statroll@dbdroll_bot 22.07.2018 23:26:23 
+Давыдовский /statroll@dbdroll_bot 23.07.2018 0:01:37 
+Давыдовский /statroll 23.07.2018 0:01:38 
+Дискриминант /statroll@dbdroll_bot 23.07.2018 0:01:38 
+Kobernick /statroll@dbdroll_bot 23.07.2018 0:01:38 
+Дима /moneyinfo 23.07.2018 0:01:38 
+Kobernick /statroll@dbdroll_bot 23.07.2018 0:01:38 
+Kobernick /statroll. 23.07.2018 0:11:11 
+Лысоконь /statroll@dbdroll_bot 23.07.2018 0:11:39 
+Дискриминант /statroll@dbdroll_bot 23.07.2018 0:33:37 
+Pond /r 6d4*10 25.07.2018 11:28:30 
+Дима /addmoney -13.5 25.07.2018 16:32:18 
+Дима /dm Bank -19.5 25.07.2018 16:32:25 
+Дима /moneyinfo all 25.07.2018 16:32:54 
+Дима /dm Bank 0.5 25.07.2018 16:33:51 
+Дискриминант /r@dbdroll_bot 28.07.2018 19:57:36 
+Дискриминант /r@dbdroll_bot 28.07.2018 19:57:36 
+Дискриминант /r@dbdroll_bot 28.07.2018 19:57:36 
+Дима /r@dbdroll_bot 2d6 28.07.2018 19:57:36 
+Дима /rollname@dbdroll_bot 29.07.2018 14:11:10 
+Давыдовский /r@dbdroll_bot 29.07.2018 16:54:42 
+Давыдовский /r@dbdroll_bot 1d4 29.07.2018 16:54:54 
+Давыдовский /start 29.07.2018 19:19:42 
+Давыдовский /statroll 29.07.2018 19:19:46 
+Давыдовский /statroll 29.07.2018 19:19:59 
+Давыдовский /statroll 29.07.2018 19:20:09 
+Дискриминант /statroll@dbdroll_bot 29.08.2018 15:00:36 
+Дискриминант /statroll@dbdroll_bot 29.08.2018 15:00:36 
+Kobernick /statroll@dbdroll_bot 29.08.2018 15:01:16 
+Pond /statroll@dbdroll_bot 29.08.2018 15:05:40 
+Дима /r d20 29.08.2018 15:05:49 
+Kobernick /statroll@dbdroll_bot 29.08.2018 15:06:30 
+Дима /statroll@dbdroll_bot 29.08.2018 15:06:40 
+Дима /rollname@dbdroll_bot 15 29.08.2018 15:06:59 
+Дима /rollword@dbdroll_bot 29.08.2018 15:07:12 
+Kobernick /rollname@dbdroll_bot 29.08.2018 15:07:29 
+Дима /rollname@dbdroll_bot 7 29.08.2018 15:12:30 
+Дима /statroll 29.08.2018 16:53:51 
+Дима /statroll 29.08.2018 16:54:01 
+Дима /statroll 29.08.2018 16:54:04 
+Дима /statroll 29.08.2018 16:54:05 
+Дима /statroll 29.08.2018 16:54:07 
+Дима /statroll 29.08.2018 16:54:08 
+Дима /statroll 29.08.2018 16:54:09 
+Дима /statroll 29.08.2018 16:54:11 
+Дима /statroll 29.08.2018 16:54:14 
